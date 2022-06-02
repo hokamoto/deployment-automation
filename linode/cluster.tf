@@ -60,8 +60,8 @@ resource "local_file" "hosts_ini" {
       redpanda_private_ips = linode_instance.redpanda.*.private_ip_address
       monitor_public_ip    = var.enable_monitoring ? linode_instance.monitor[0].ip_address : ""
       monitor_private_ip   = var.enable_monitoring ? linode_instance.monitor[0].private_ip_address : ""
-      client_public_ips    = []
-      client_private_ips   = []
+      client_public_ips    = linode_instance.client.*.ip_address
+      client_private_ips   = linode_instance.client.*.private_ip_address
       ssh_user             = "root"
       enable_monitoring    = var.enable_monitoring
     }
