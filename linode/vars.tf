@@ -26,6 +26,11 @@ variable "machine_type" {
   default = "g6-dedicated-2"
 }
 
+variable "enable_monitoring" {
+  description = "Setup a prometheus/grafana instance"
+  default     = true
+}
+
 variable "public_key_path" {
   description = "The ssh key."
 }
