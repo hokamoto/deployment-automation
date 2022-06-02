@@ -28,7 +28,7 @@ resource "linode_instance" "client" {
   label           = "rp-client"
   group           = "rp-client"
   tags            = ["rp-client"]
-  type            = var.client_instance_type
+  type            = var.client_machine_type
   image           = var.image
   authorized_keys = [chomp(file(var.public_key_path))]
   private_ip      = true
