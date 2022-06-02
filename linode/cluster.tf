@@ -22,6 +22,25 @@ resource "linode_instance" "monitor" {
   private_ip      = true
 }
 
+resource "linode_firewall" "redpanda_firewall" {
+  label = "rp-firewall"
+  tags  = ["rp-cluster"]
+
+  inbound {
+    label    = "allow"
+    action   = "ACCEPT"
+    protocol = "TCP"
+    ports    = "22, 9092, 33145, 9644, 3000, 9090, 9100"
+    ipv4     = ["0.0.0.0/0"]
+    ipv6     = ["::/0"]
+  }
+
+  inbound_policy  = "DROP"
+  outbound_policy = "ACCEPT"
+
+  linodes = var.enable_monitoring ? concat(linode_instance.redpanda.*.id, [linode_instance.monitor[0].id]) : linode_instance.redpanda.*.id
+}
+
 resource "local_file" "hosts_ini" {
   content = templatefile("${path.module}/../templates/hosts_ini.tpl",
     {
