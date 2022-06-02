@@ -1,6 +1,6 @@
 # Terraform and Ansible Deployment for Redpanda
 
-Terraform and Ansible configuration to easily provision a [Redpanda](https://vectorized.io) cluster on AWS, GCP, Azure, or IBM .
+Terraform and Ansible configuration to easily provision a [Redpanda](https://vectorized.io) cluster on AWS, GCP, Azure, IBM, or Linode .
 
 ## Installation Prerequisites
 
@@ -29,6 +29,7 @@ To use existing infrastructure, update the `hosts.ini` file with the appropriate
 * [GCP](gcp/readme.md)
 * [Azure](azure/README.md)
 * [IBM Cloud](ibm/README.md)
+* [Linode](linode/README.md)
 
 ### Required Steps: Deploying Redpanda
 
