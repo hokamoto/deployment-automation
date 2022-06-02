@@ -2,6 +2,7 @@ resource "linode_instance" "redpanda" {
   region          = var.region
   count           = var.nodes
   label           = "rp-node-${count.index}"
+  group           = "rp-cluster"
   tags            = ["rp-cluster"]
   type            = var.machine_type
   image           = var.image
