@@ -9,7 +9,13 @@ variable "region" {
 variable "nodes" {
   description = "The number of nodes to deploy."
   type        = number
-  default     = "3"
+  default     = 3
+}
+
+variable "clients" {
+  description = "Number of kafka client hosts to set up, if any."
+  type        = number
+  default     = 0
 }
 
 variable "disks" {
@@ -19,11 +25,21 @@ variable "disks" {
 }
 
 variable "image" {
-  default = "linode/ubuntu18.04"
+  default = "linode/ubuntu22.04"
 }
 
 variable "machine_type" {
   default = "g6-dedicated-2"
+}
+
+variable "monitor_machine_type" {
+  description = "Instant type of the prometheus/grafana node"
+  default     = "g6-dedicated-2"
+}
+
+variable "client_machine_type" {
+  description = "Default client instance type to create"
+  default     = "g6-standard-2"
 }
 
 variable "enable_monitoring" {

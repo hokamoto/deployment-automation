@@ -16,7 +16,19 @@ resource "linode_instance" "monitor" {
   label           = "rp-monitor"
   group           = "rp-cluster"
   tags            = ["rp-cluster"]
-  type            = var.machine_type
+  type            = var.monitor_machine_type
+  image           = var.image
+  authorized_keys = [chomp(file(var.public_key_path))]
+  private_ip      = true
+}
+
+resource "linode_instance" "client" {
+  region          = var.region
+  count           = var.clients
+  label           = "rp-client"
+  group           = "rp-client"
+  tags            = ["rp-client"]
+  type            = var.client_instance_type
   image           = var.image
   authorized_keys = [chomp(file(var.public_key_path))]
   private_ip      = true
